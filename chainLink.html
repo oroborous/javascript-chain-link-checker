@@ -10,23 +10,25 @@
             font-size: x-large;
             text-align: center;
         }
+
+        input {
+            font-size: x-large;
+            margin-bottom: 25px;
+        }
     </style>
     <title>Chain-Link Checker</title>
 </head>
 
 <body>
 <h2>Chain Link Checker</h2>
-<input type="text" id="sentence" value="Broadcast station, once certified, educates estimable legions.">
+<input type="text" id="sentence" size="55" value="Broadcast station, once certified, educates estimable legions.">
 <br/>
 <input type="button" value="Check" id="checkButton">
 <br/><br/>
 <span id="result"></span>
 </body>
 
-<script
-        src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 <script>
     $(init);
@@ -39,7 +41,10 @@
         // Get the text string from the box
         var sentence = $("#sentence").val();
 
-        // An array of non-letter characters to remove
+        // An array of non-letter characters to remove.
+        // We could add dashes, apostrophes, and
+        // other punctuation, but we'll start with just
+        // commas and periods
         var badChars = [",", "."];
 
         // Loop through the bad characters
@@ -72,9 +77,11 @@
 
             // Are the sub-sequences the same?
             if (sub1 != sub2) {
-                // If they are not the same, we have our answer
-                // The sentence is not a chain link sentence
+                // If they are not the same, we have our answer:
+                // The sentence is not a chain link sentence.
                 $("#result").text("Not a chain link sentence");
+                // "return" exits the function early
+                // because we have found our result
                 return;
             }
         }
