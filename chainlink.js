@@ -1,41 +1,5 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <style>
-        body {
-            font-family: Monospaced, monospace;
-            background-color: darkorange;
-            background-image: url("png-seamless-chainlink-fence.png");
-            font-size: x-large;
-            text-align: center;
-        }
-
-        input {
-            font-size: x-large;
-            margin-bottom: 25px;
-        }
-    </style>
-    <title>Chain-Link Checker</title>
-</head>
-
-<body>
-<h2>Chain Link Checker</h2>
-<input type="text" id="sentence" size="55" value="Broadcast station, once certified, educates estimable legions.">
-<br/>
-<input type="button" value="Check" id="checkButton">
-<br/><br/>
-<span id="result"></span>
-</body>
-
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
-<script>
-    $(init);
-
-    function init() {
-        $("#checkButton").click(checkSentence);
-    }
+$(document).ready(function () {
+    $("#checkButton").click(checkSentence);
 
     function checkSentence() {
         // Get the text string from the box
@@ -48,11 +12,11 @@
         var badChars = [",", "."];
 
         // Loop through the bad characters
-        for (var i = 0; i < badChars.length; i++) {
+        for (var badCharacter of badChars) {
             // Are there any more of this bad character in the text?
-            while (sentence.indexOf(badChars[i]) != -1) {
+            while (sentence.indexOf(badCharacter) !== -1) {
                 // Replace the first one you find
-                sentence = sentence.replace(badChars[i], "");
+                sentence = sentence.replace(badCharacter, "");
             }
         }
 
@@ -76,7 +40,7 @@
             var sub2 = sentenceArray[j + 1].substring(0, 2);
 
             // Are the sub-sequences the same?
-            if (sub1 != sub2) {
+            if (sub1 !== sub2) {
                 // If they are not the same, we have our answer:
                 // The sentence is not a chain link sentence.
                 $("#result").text("Not a chain link sentence");
@@ -90,5 +54,5 @@
         // did not find any non-matching sub-sequences
         $("#result").text("Is a chain link sentence");
     }
-</script>
-</html>
+
+});
